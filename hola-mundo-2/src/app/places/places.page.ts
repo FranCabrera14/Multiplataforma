@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PlacesService} from './places.service';
 import {  places } from "./places.model";
+import { Route, Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,9 @@ export class PlacesPage  {
 titulo: string = "Mi enemigo se llama Cristian"
 
   public places : places[] = [];
-  constructor(private placesService: PlacesService) {
+  constructor(private placesService: PlacesService,
+    private router: Router
+  ) {
 
    }
 
@@ -31,5 +34,18 @@ titulo: string = "Mi enemigo se llama Cristian"
   {
     this.places=this.placesService.getPlaces();
   }
-
+  /**
+   * Inserta un nuevo elemento en el json
+   */
+  newPlace()
+  {
+    alert("New Page")
+    this.router.navigate(['/places/place-add'])
+  }
+  /**
+   * va a la pagina de inicio por defecto
+   */
+  goToHome(){
+    this.router.navigate(['home'])
+  }
 }
